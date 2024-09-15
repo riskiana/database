@@ -19,3 +19,9 @@ DROP DATABASE fix3;
 DROP DATABASE fix4;
 DROP DATABASE fix5;
 ```
+5. Delete all databases except few ones in postgres
+```
+SELECT 'DROP DATABASE ' || quote_ident(datname) || ';'
+FROM pg_database
+WHERE datname not in ('postgres','dbtest') AND datistemplate=false;
+```   
